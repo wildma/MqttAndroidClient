@@ -1,5 +1,6 @@
 package com.wildma.mqttandroidclient;
 
+import android.annotation.SuppressLint;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
@@ -9,7 +10,6 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -31,16 +31,16 @@ import org.eclipse.paho.client.mqttv3.MqttMessage;
 
 public class MyMqttService extends Service {
 
-    public final String TAG = MyMqttService.class.getSimpleName();
+    public final   String             TAG            = MyMqttService.class.getSimpleName();
     private static MqttAndroidClient  mqttAndroidClient;
     private        MqttConnectOptions mMqttConnectOptions;
-    public        String HOST           = "tcp://192.168.0.102:61613";//服务器地址（协议+地址+端口号）
-    public        String USERNAME       = "admin";//用户名
-    public        String PASSWORD       = "password";//密码
-    public static String PUBLISH_TOPIC  = "tourist_enter";//发布主题
-    public static String RESPONSE_TOPIC = "message_arrived";//响应主题
-    @RequiresApi(api = 26)
-    public        String CLIENTID       = Build.VERSION.SDK_INT >= Build.VERSION_CODES.O
+    public         String             HOST           = "tcp://192.168.1.10:61613";//服务器地址（协议+地址+端口号）
+    public         String             USERNAME       = "admin";//用户名
+    public         String             PASSWORD       = "password";//密码
+    public static  String             PUBLISH_TOPIC  = "tourist_enter";//发布主题
+    public static  String             RESPONSE_TOPIC = "message_arrived";//响应主题
+    @SuppressLint("MissingPermission")
+    public         String             CLIENTID       = Build.VERSION.SDK_INT >= Build.VERSION_CODES.O
             ? Build.getSerial() : Build.SERIAL;//客户端ID，一般以客户端唯一标识符表示，这里用设备序列号表示
 
     @Override

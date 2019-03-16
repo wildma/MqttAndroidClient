@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">MqttAndroidClient</string>
+    <string name="permission_denied_hint">我们需要一些您已经拒绝的权限，请同意授权，否则功能无法正常使用！</string>
+    <string name="permission_denied_forever_hint">我们需要一些您已经拒绝的权限，请到设置页面手动授权，否则功能无法正常使用！</string>
 </resources>
