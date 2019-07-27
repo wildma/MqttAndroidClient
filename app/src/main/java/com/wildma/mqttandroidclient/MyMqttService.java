@@ -56,13 +56,6 @@ public class MyMqttService extends Service {
     }
 
     /**
-     * 开启服务
-     */
-    public static void startService(Context mContext) {
-        mContext.startService(new Intent(mContext, MyMqttService.class));
-    }
-
-    /**
      * 发布 （模拟其他客户端发布消息）
      *
      * @param message 消息

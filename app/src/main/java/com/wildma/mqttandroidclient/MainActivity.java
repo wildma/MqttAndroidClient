@@ -1,5 +1,6 @@
 package com.wildma.mqttandroidclient;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -14,6 +15,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private String TAG = this.getClass().getSimpleName();
+    private Intent mIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +44,9 @@ public class MainActivity extends AppCompatActivity {
                 .callback(new PermissionUtils.FullCallback() {
                     @Override
                     public void onGranted(List<String> permissionsGranted) {
-                        MyMqttService.startService(MainActivity.this); //开启服务
+                        mIntent = new Intent(MainActivity.this, MyMqttService.class);
+                        //开启服务
+                        startService(mIntent);
                     }
 
                     @Override
@@ -57,4 +61,10 @@ public class MainActivity extends AppCompatActivity {
                 .request();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        //停止服务
+        stopService(mIntent);
+    }
 }
